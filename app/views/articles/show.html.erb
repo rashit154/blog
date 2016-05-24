@@ -8,34 +8,12 @@
   <%= @article.text %>
 </p>
 
-<h2>Commets</h2>
-<% @article.commets.each do |comment| %>
-  <p>
-  	<strong>Commenter</strong>
-  	<%= comment.commenter %>
-  </p>
 
-  <p>
-  	<strong>Comment:</strong>
-  	<%= cmment.body %>
-  </p>
-<% end %> 
- 
-<h2>Add a comment</h2>
-<%= form_for ([@article, @article.comments.build]) do |f| %>
-  <p>
-  	<%= f.label :commenter %><br>
-  	<%= f.label_field :commenter %>
-  </p>
-  <p>
-  	<%= f.label :body %><br>
-  	<%= f.text_area :boody %>
-  </p>
-  <p>
-  	<%= f.sumbit %>
-  </p>
-<% end %>  
+<h2>Comments</h2>
+<%= render @article.comments %>
 
+<h2>Add a comment:</h2>
+<%= render @article.comments %>
 
 <%= link_to 'Back', articles_path %>
 
