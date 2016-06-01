@@ -1,13 +1,13 @@
 class ArticlesController < ApplicationController
-  http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
+  http_basic_authenticate_with name: "user", password: "user", except: [:index, :show]
 
-  def index 
+  def index
 	@articles = Article.all
   end
 
   def show
 	@article = Article.find(params[:id])
-  end  	
+  end
 
   def new
 	@article = Article.new
@@ -15,18 +15,18 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = Article.find(params[:id])
-  end  
+  end
 
   def create
 	@article = Article.new(article_params)
-	  
+
 	if @article.save
 	redirect_to @article
 	else
 	  render 'new'
-    end	
-  end  
-    
+    end
+  end
+
   def update
   	@article = Article.find(params[:id])
 
@@ -35,15 +35,15 @@ class ArticlesController < ApplicationController
   	else
   	  render 'edit'
   	end
-  end	  	
+  end
 
   def destroy
      @article = Article.find(params[:id])
      @article.destroy
 
      redirect_to articles_path
-  end   
-  
+  end
+
   private
     def article_params
 	  params.require(:article).permit(:title, :text)
